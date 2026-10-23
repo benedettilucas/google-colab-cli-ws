@@ -395,7 +395,7 @@ def _proxy_command(session: SessionState, identity: Optional[str]) -> str:
     already exists by then, so only ``-s NAME`` (plus identity) is needed.
     """
     self_cmd = [
-        sys.executable,
+        Path(sys.executable).as_posix(),
         "-m",
         "colab_cli.cli",
         "ssh",

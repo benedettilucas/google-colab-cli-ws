@@ -213,10 +213,11 @@ def exec_command(
         on_session_started=on_sess_started,
     )
     try:
-        # Ensure we are in /content which is the standard Colab working directory
-        runtime.execute_code(
-            "import os; os.makedirs('/content', exist_ok=True); os.chdir('/content')"
-        )
+        if not s.kernel_id:
+            # Ensure we are in /content which is the standard Colab working directory
+            runtime.execute_code(
+                "import os; os.makedirs('/content', exist_ok=True); os.chdir('/content')"
+            )
     except Exception as e:
         if is_terminal_error(e):
             typer.echo(
@@ -314,10 +315,11 @@ def repl(
         on_session_started=on_sess_started,
     )
     try:
-        # Ensure we are in /content which is the standard Colab working directory
-        runtime.execute_code(
-            "import os; os.makedirs('/content', exist_ok=True); os.chdir('/content')"
-        )
+        if not s.kernel_id:
+            # Ensure we are in /content which is the standard Colab working directory
+            runtime.execute_code(
+                "import os; os.makedirs('/content', exist_ok=True); os.chdir('/content')"
+            )
     except Exception as e:
         if is_terminal_error(e):
             typer.echo(
